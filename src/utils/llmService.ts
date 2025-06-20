@@ -14,13 +14,11 @@ export const generateFact = async (): Promise<GeneratedFact> => {
     throw new Error('API-nykkel ikkje funne');
   }
 
-  const prompt = `Generer eit nytt, fascinerende og faktisk faktum om Nord-Trøndelag fylke i Noreg. Faktumet skal vere på nynorsk, akkurat som desse eksempla:
+  const prompt = `Generer ett nytt, fascinerende og faktisk faktum om Nord-Trøndelag fylke i Norge. Dette er eksempler:
+* Norges eneste Miss Universe noensinne kommer fra Stjørdal og heter Mona Grudt. Hun gikk til topps i konkurransen og fikk tittelen i 1990.
+* Munkeby er navnet på osten som fire franske munker produserer i Munkeby Mariakloster i Munkebygrenda ved Levanger. Osten er laget på upasteurisert kumelk og er ifølge kokken Eivind Hellstrøm er den en av landets aller beste oster.
 
-- "Nord-Trøndelag har Leka-øya, som inneheld nokre av verdas eldste bergartar frå 3,8 milliardar år tilbake."
-- "Regionen er kjend for den tradisjonelle 'lefsa', som har blitt laga her i over 500 år."
-- "Steinkjer, regionsenteret, blei fullstendig gjenoppbygd etter andre verdskrig og er kjend som ein av Noregs mest moderne småbyar."
-
-Returner berre faktumet, ingen ekstra tekst eller forklaring. Det skal vere eitt komplett faktum som startar direkte utan innleiing.`;
+Returner bare faktumet, ingen ekstra tekst eller forklaring. Det skal være et komplett faktum som startar direkte uten innledning.`;
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -33,7 +31,7 @@ Returner berre faktumet, ingen ekstra tekst eller forklaring. Det skal vere eitt
       messages: [
         {
           role: 'system',
-          content: 'Du er ein ekspert på Nord-Trøndelag fylke i Noreg. Skriv alltid på nynorsk.'
+          content: 'Du er en ekspert på Nord-Trøndelag fylke i Norge. Du har god sans for humor og kommer med fakta som oppleves som morsomme for leseren. Svar på bokmål.'
         },
         {
           role: 'user',
