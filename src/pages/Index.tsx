@@ -38,13 +38,27 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Header */}
       <header className="bg-blue-600 text-white shadow-lg">
-        <div className="container mx-auto px-4 py-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight">
-            Morosame Fakta om Nord-Trøndelag
-          </h1>
-          <p className="text-blue-100 text-lg md:text-xl max-w-2xl mx-auto">
-            Oppdag fascinerende fakta om Noregs vakre nordlege region
-          </p>
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            {/* Coat of Arms */}
+            <div className="flex-shrink-0">
+              <img 
+                src="/lovable-uploads/b3fb0450-fff9-4190-b440-e6148864600d.png" 
+                alt="Nord-Trøndelag våpenskjold" 
+                className="w-20 h-24 md:w-24 md:h-28 object-contain"
+              />
+            </div>
+            
+            {/* Title and Description */}
+            <div className="text-center md:text-left">
+              <h1 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight">
+                Morosame Fakta om Nord-Trøndelag
+              </h1>
+              <p className="text-blue-100 text-lg md:text-xl max-w-2xl">
+                Oppdag fascinerende fakta om Noregs vakre nordlege region
+              </p>
+            </div>
+          </div>
         </div>
       </header>
 
