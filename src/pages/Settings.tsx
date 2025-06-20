@@ -17,7 +17,7 @@ const Settings = () => {
     if (!apiKey.trim()) {
       toast({
         title: "Feil",
-        description: "API-nykkel kan ikkje vere tom",
+        description: "API-nøkkel kan ikke være tom",
         variant: "destructive",
       });
       return;
@@ -29,8 +29,8 @@ const Settings = () => {
     });
 
     toast({
-      title: "Lagra!",
-      description: "API-nykkel er lagra trygt i nettlesaren din",
+      title: "Lagret!",
+      description: "API-nøkkel er lagret trygt i nettleseren din",
     });
   };
 
@@ -64,7 +64,7 @@ const Settings = () => {
             </div>
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight drop-shadow-lg">
-                Innstillingar
+                Innstillinger
               </h1>
               <p className="text-emerald-100 text-lg md:text-xl drop-shadow-md">
                 Konfigurer AI-integrasjon for å generere nye fakta
@@ -78,12 +78,12 @@ const Settings = () => {
           <div className="max-w-2xl mx-auto">
             <Card className="bg-white/85 backdrop-blur-md border-emerald-200/50 shadow-xl">
               <CardHeader>
-                <CardTitle className="text-emerald-800 text-2xl">OpenAI API-nykkel</CardTitle>
+                <CardTitle className="text-emerald-800 text-2xl">OpenAI API-nøkkel</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
                   <label htmlFor="apiKey" className="text-sm font-medium text-emerald-700">
-                    API-nykkel
+                    API-nøkkel
                   </label>
                   <div className="relative">
                     <Input
@@ -107,21 +107,21 @@ const Settings = () => {
                 </div>
 
                 <div className="bg-emerald-50/80 p-4 rounded-lg border border-emerald-200">
-                  <h3 className="font-medium text-emerald-800 mb-2">Korleis få API-nykkel:</h3>
+                  <h3 className="font-medium text-emerald-800 mb-2">Hvordan få API-nøkkel:</h3>
                   <ol className="text-sm text-emerald-700 space-y-1 list-decimal list-inside">
                     <li>Gå til <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="underline">OpenAI API Keys</a></li>
                     <li>Logg inn eller opprett konto</li>
                     <li>Klikk "Create new secret key"</li>
-                    <li>Kopier nykkelen og lim den inn her</li>
+                    <li>Kopier nøkkelen og lim den inn her</li>
                   </ol>
                   <p className="text-xs text-emerald-600 mt-2">
-                    Nykkelen blir lagra trygt i nettlesaren din og vert aldri sendt til våre serverar.
+                    Nøkkelen blir lagret trygt i nettleseren din og blir aldri sendt til våre servere.
                   </p>
                 </div>
 
                 <Button onClick={handleSave} className="w-full">
                   <Save className="w-4 h-4 mr-2" />
-                  Lagre API-nykkel
+                  Lagre API-nøkkel
                 </Button>
               </CardContent>
             </Card>
@@ -132,7 +132,7 @@ const Settings = () => {
         <footer className="bg-gradient-to-r from-emerald-800/90 to-blue-800/90 text-white py-8 mt-16 backdrop-blur-sm shadow-2xl">
           <div className="container mx-auto px-4 text-center">
             <p className="text-emerald-100 drop-shadow-md">
-              Feirar den rike arven og naturskjønheita til Nord-Trøndelag, Noreg
+              Feirer den rike arven og naturskjønnheten til Nord-Trøndelag, Norge
             </p>
           </div>
         </footer>

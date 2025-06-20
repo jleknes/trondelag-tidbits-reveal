@@ -7,27 +7,27 @@ import { ArrowLeft, Share2 } from "lucide-react";
 
 const Facts = () => {
   const facts = [
-    "Nord-Trøndelag har Leka-øya, som inneheld nokre av verdas eldste bergartar frå 3,8 milliardar år tilbake.",
-    "Regionen er kjend for den tradisjonelle 'lefsa', som har blitt laga her i over 500 år.",
-    "Steinkjer, regionsenteret, blei fullstendig gjenoppbygd etter andre verdskrig og er kjend som ein av Noregs mest moderne småbyar.",
-    "Området innehald delar av trekkruta til over 2 millionar reinsdyr, noko som gjer det til ein av Europas største dyremigrasjonar.",
-    "Nord-Trøndelag har fleire helleristningar frå steinalderen enn noko anna norsk fylke, med over 5000 dokumenterte lokalitetar.",
-    "Regionen produserer om lag 25% av Noregs totale lakseoppdrett, noko som gjer den avgjerande for landets sjømatindustri.",
-    "Snåsa kommune har verdas djupaste isfrie vatn nord for polarsirkelen - Snåsavatnet.",
-    "Området har den høgste konsentrasjonen av gravhaugar frå jernalder i heile Skandinavia.",
-    "Skogane i Nord-Trøndelag produserte tømmer som historisk blei brukt til å byggje skip for den norske marinen.",
-    "Regionen opplever midnattssol-fenomenet, med kontinuerleg dagslys i om lag 2 månader om sommaren.",
-    "Tradisjonelle 'gamme' jordhus kan framleis finnast her, som representerer gamle samiske byggeteknikkar.",
-    "Fylket har over 40 000 innsjøar, noko som gjer det til eit paradis for ferskvassfiske-entusiastar.",
-    "Levanger er kjend for sitt årlege 'Levanger Marked', som has blitt halden kontinuerleg sidan 1653.",
-    "Regionens dialekt blir rekna som ein av dei mest særeigne i Noreg, med unike uttaleformer.",
-    "Nord-Trøndelag har den største populasjonen av kongeørn i Noreg, med over 200 hekkande par."
+    "Nord-Trøndelag har Leka-øya, som inneholder noen av verdens eldste bergarter fra 3,8 milliarder år tilbake.",
+    "Regionen er kjent for den tradisjonelle 'lefsa', som har blitt laget her i over 500 år.",
+    "Steinkjer, regionsenteret, ble fullstendig gjenoppbygd etter andre verdenskrig og er kjent som en av Norges mest moderne småbyer.",
+    "Området inneholder deler av trekkreuten til over 2 millioner reinsdyr, noe som gjør det til en av Europas største dyremigrasjonar.",
+    "Nord-Trøndelag har flere helleristninger fra steinalderen enn noe annet norsk fylke, med over 5000 dokumenterte lokaliteter.",
+    "Regionen produserer omtrent 25% av Norges totale lakseoppdrett, noe som gjør den avgjørende for landets sjømatindustri.",
+    "Snåsa kommune har verdens dypeste isfrie vann nord for polarsirkelen - Snåsavatnet.",
+    "Området har den høyeste konsentrasjonen av gravhauger fra jernalder i hele Skandinavia.",
+    "Skogene i Nord-Trøndelag produserte tømmer som historisk ble brukt til å bygge skip for den norske marinen.",
+    "Regionen opplever midnattssol-fenomenet, med kontinuerlig dagslys i omtrent 2 måneder om sommeren.",
+    "Tradisjonelle 'gamme' jordhus kan fortsatt finnes her, som representerer gamle samiske byggeteknikker.",
+    "Fylket har over 40 000 innsjøer, noe som gjør det til et paradis for ferskvannsangling-entusiaster.",
+    "Levanger er kjent for sitt årlige 'Levanger Marked', som har blitt holdt kontinuerlig siden 1653.",
+    "Regionens dialekt blir regnet som en av de mest særegne i Norge, med unike uttaleformer.",
+    "Nord-Trøndelag har den største populasjonen av kongeørn i Norge, med over 200 hekkende par."
   ];
 
   const shareFact = (factIndex: number) => {
     const shareUrl = `${window.location.origin}/fact/${factIndex}`;
     navigator.clipboard.writeText(shareUrl);
-    alert('Lenke kopiert til utklippstavla!');
+    alert('Lenke kopiert til utklippstavlen!');
   };
 
   return (
@@ -103,7 +103,7 @@ const Facts = () => {
         <footer className="bg-gradient-to-r from-emerald-800/90 to-blue-800/90 text-white py-8 mt-16 backdrop-blur-sm shadow-2xl">
           <div className="container mx-auto px-4 text-center">
             <p className="text-emerald-100 drop-shadow-md">
-              Feirar den rike arven og naturskjønheita til Nord-Trøndelag, Noreg
+              Feirer den rike arven og naturskjønnheten til Nord-Trøndelag, Norge
             </p>
           </div>
         </footer>

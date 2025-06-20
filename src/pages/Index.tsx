@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,21 +13,21 @@ const Index = () => {
   const { toast } = useToast();
 
   const facts = [
-    "Nord-Trøndelag har Leka-øya, som inneheld nokre av verdas eldste bergartar frå 3,8 milliardar år tilbake.",
-    "Regionen er kjend for den tradisjonelle 'lefsa', som har blitt laga her i over 500 år.",
-    "Steinkjer, regionsenteret, blei fullstendig gjenoppbygd etter andre verdskrig og er kjend som ein av Noregs mest moderne småbyar.",
-    "Området innehald delar av trekkruta til over 2 millionar reinsdyr, noko som gjer det til ein av Europas største dyremigrasjonar.",
-    "Nord-Trøndelag har fleire helleristningar frå steinalderen enn noko anna norsk fylke, med over 5000 dokumenterte lokalitetar.",
-    "Regionen produserer om lag 25% av Noregs totale lakseoppdrett, noko som gjer den avgjerande for landets sjømatindustri.",
-    "Snåsa kommune har verdas djupaste isfrie vatn nord for polarsirkelen - Snåsavatnet.",
-    "Området har den høgste konsentrasjonen av gravhaugar frå jernalder i heile Skandinavia.",
-    "Skogane i Nord-Trøndelag produserte tømmer som historisk blei brukt til å byggje skip for den norske marinen.",
-    "Regionen opplever midnattssol-fenomenet, med kontinuerleg dagslys i om lag 2 månader om sommaren.",
-    "Tradisjonelle 'gamme' jordhus kan framleis finnast her, som representerer gamle samiske byggeteknikkar.",
-    "Fylket har over 40 000 innsjøar, noko som gjer det til eit paradis for ferskvassfiske-entusiastar.",
-    "Levanger er kjend for sitt årlege 'Levanger Marked', som har blitt halden kontinuerleg sidan 1653.",
-    "Regionens dialekt blir rekna som ein av dei mest særeigne i Noreg, med unike uttaleformer.",
-    "Nord-Trøndelag har den største populasjonen av kongeørn i Noreg, med over 200 hekkande par."
+    "Nord-Trøndelag har Leka-øya, som inneholder noen av verdens eldste bergarter fra 3,8 milliarder år tilbake.",
+    "Regionen er kjent for den tradisjonelle 'lefsa', som har blitt laget her i over 500 år.",
+    "Steinkjer, regionsenteret, ble fullstendig gjenoppbygd etter andre verdenskrig og er kjent som en av Norges mest moderne småbyer.",
+    "Området inneholder deler av trekkreuten til over 2 millioner reinsdyr, noe som gjør det til en av Europas største dyremigrasjonar.",
+    "Nord-Trøndelag har flere helleristninger fra steinalderen enn noe annet norsk fylke, med over 5000 dokumenterte lokaliteter.",
+    "Regionen produserer omtrent 25% av Norges totale lakseoppdrett, noe som gjør den avgjørende for landets sjømatindustri.",
+    "Snåsa kommune har verdens dypeste isfrie vann nord for polarsirkelen - Snåsavatnet.",
+    "Området har den høyeste konsentrasjonen av gravhauger fra jernalder i hele Skandinavia.",
+    "Skogene i Nord-Trøndelag produserte tømmer som historisk ble brukt til å bygge skip for den norske marinen.",
+    "Regionen opplever midnattssol-fenomenet, med kontinuerlig dagslys i omtrent 2 måneder om sommeren.",
+    "Tradisjonelle 'gamme' jordhus kan fortsatt finnes her, som representerer gamle samiske byggeteknikker.",
+    "Fylket har over 40 000 innsjøer, noe som gjør det til et paradis for ferskvannsangling-entusiaster.",
+    "Levanger er kjent for sitt årlige 'Levanger Marked', som har blitt holdt kontinuerlig siden 1653.",
+    "Regionens dialekt blir regnet som en av de mest særegne i Norge, med unike uttaleformer.",
+    "Nord-Trøndelag har den største populasjonen av kongeørn i Norge, med over 200 hekkende par."
   ];
 
   const [currentFact, setCurrentFact] = useState("");
@@ -63,12 +64,12 @@ const Index = () => {
       setCurrentFact(newFact.text);
       toast({
         title: "Nytt AI-faktum generert!",
-        description: "Eit spennande nytt faktum om Nord-Trøndelag",
+        description: "Et spennende nytt faktum om Nord-Trøndelag",
       });
     } catch (error) {
       toast({
         title: "Feil ved generering",
-        description: error instanceof Error ? error.message : "Noko gjekk gale",
+        description: error instanceof Error ? error.message : "Noe gikk galt",
         variant: "destructive",
       });
     } finally {
@@ -83,14 +84,14 @@ const Index = () => {
       navigator.clipboard.writeText(`${generatedFact.text}\n\n- Generert av AI om Nord-Trøndelag`);
       toast({
         title: "Kopiert!",
-        description: "AI-generert faktum kopiert til utklippstavla",
+        description: "AI-generert faktum kopiert til utklippstavlen",
       });
     } else if (currentFact && currentFactIndex !== -1) {
       const shareUrl = `${window.location.origin}/fact/${currentFactIndex}`;
       navigator.clipboard.writeText(shareUrl);
       toast({
         title: "Kopiert!",
-        description: "Lenke kopiert til utklippstavla",
+        description: "Lenke kopiert til utklippstavlen",
       });
     }
   };
@@ -122,7 +123,7 @@ const Index = () => {
               <Link to="/settings">
                 <Button variant="ghost" size="sm" className="text-white hover:bg-white/20">
                   <Settings className="w-4 h-4 mr-2" />
-                  Innstillingar
+                  Innstillinger
                 </Button>
               </Link>
             </div>
@@ -140,10 +141,10 @@ const Index = () => {
               {/* Title and Description */}
               <div className="text-center md:text-left">
                 <h1 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight drop-shadow-lg">
-                  Morosame Fakta om Nord-Trøndelag
+                  Morsomme Fakta om Nord-Trøndelag
                 </h1>
                 <p className="text-emerald-100 text-lg md:text-xl max-w-2xl drop-shadow-md">
-                  Oppdag fascinerende fakta om Noregs vakre nordlege region
+                  Oppdag fascinerende fakta om Norges vakre nordlige region
                 </p>
               </div>
             </div>
@@ -157,16 +158,16 @@ const Index = () => {
             <div className="text-center mb-12">
               <div className="bg-white/75 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-emerald-200/50">
                 <h2 className="text-2xl md:text-3xl font-semibold text-emerald-800 mb-4">
-                  Utforsk Underverka i Nord-Trøndelag
+                  Utforsk Underverkene i Nord-Trøndelag
                 </h2>
                 <p className="text-emerald-700 text-lg max-w-2xl mx-auto leading-relaxed mb-6">
-                  Frå urgamle bergformasjonar til moderne lakseoppdrett - Nord-Trøndelag er ein region 
-                  rik på historie, kultur og naturskjønheit. Trykk på knappen under for å oppdage 
-                  fantastiske fakta om denne merkelege delen av Noreg.
+                  Fra urgamle bergformasjoner til moderne lakseoppdrett - Nord-Trøndelag er en region 
+                  rik på historie, kultur og naturskjønnhet. Trykk på knappen under for å oppdage 
+                  fantastiske fakta om denne merkelige delen av Norge.
                 </p>
                 <Link to="/facts">
                   <Button variant="outline" className="mb-4">
-                    Sjå alle fakta
+                    Se alle fakta
                   </Button>
                 </Link>
               </div>
@@ -227,7 +228,7 @@ const Index = () => {
                       className="flex items-center gap-2 mx-auto"
                     >
                       <Share2 size={16} />
-                      Del dette faktumet
+                      {isAIFact ? "Kopier faktum til utklippstavlen" : "Del dette faktumet"}
                     </Button>
                   </div>
                 </CardContent>
@@ -239,11 +240,11 @@ const Index = () => {
               <div className="text-center mt-12">
                 <div className="bg-emerald-50/85 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto shadow-xl border border-emerald-200/50">
                   <h3 className="text-xl font-semibold text-emerald-800 mb-4">
-                    Klar for å Lære Noko Nytt?
+                    Klar for å Lære Noe Nytt?
                   </h3>
                   <p className="text-emerald-700">
-                    Trykk på knappen over for å byrje å utforske fascinerende fakta om Nord-Trøndelag, 
-                    ein av Noregs mest interessante regionar!
+                    Trykk på knappen over for å begynne å utforske fascinerende fakta om Nord-Trøndelag, 
+                    en av Norges mest interessante regioner!
                   </p>
                 </div>
               </div>
@@ -255,7 +256,7 @@ const Index = () => {
         <footer className="bg-gradient-to-r from-emerald-800/90 to-blue-800/90 text-white py-8 mt-16 backdrop-blur-sm shadow-2xl">
           <div className="container mx-auto px-4 text-center">
             <p className="text-emerald-100 drop-shadow-md">
-              Feirar den rike arven og naturskjønheita til Nord-Trøndelag, Noreg
+              Feirer den rike arven og naturskjønnheten til Nord-Trøndelag, Norge
             </p>
           </div>
         </footer>
