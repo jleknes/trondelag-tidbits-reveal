@@ -108,8 +108,7 @@ const Index = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          filter: 'blur(1px)',
-          opacity: 0.6
+          opacity: 0.9
         }}
       />
       
