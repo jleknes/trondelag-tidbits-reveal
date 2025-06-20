@@ -8,7 +8,7 @@ const Index = () => {
     "Nord-Trøndelag har Leka-øya, som inneheld nokre av verdas eldste bergartar frå 3,8 milliardar år tilbake.",
     "Regionen er kjend for den tradisjonelle 'lefsa', som har blitt laga her i over 500 år.",
     "Steinkjer, regionsenteret, blei fullstendig gjenoppbygd etter andre verdskrig og er kjend som ein av Noregs mest moderne småbyar.",
-    "Området inneheld delar av trekkruta til over 2 millionar reinsdyr, noko som gjer det til ein av Europas største dyremigrasjonar.",
+    "Området innehald delar av trekkruta til over 2 millionar reinsdyr, noko som gjer det til ein av Europas største dyremigrasjonar.",
     "Nord-Trøndelag har fleire helleristningar frå steinalderen enn noko anna norsk fylke, med over 5000 dokumenterte lokalitetar.",
     "Regionen produserer om lag 25% av Noregs totale lakseoppdrett, noko som gjer den avgjerande for landets sjømatindustri.",
     "Snåsa kommune har verdas djupaste isfrie vatn nord for polarsirkelen - Snåsavatnet.",
@@ -35,100 +35,118 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      {/* Header */}
-      <header className="bg-blue-600 text-white shadow-lg">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            {/* Coat of Arms */}
-            <div className="flex-shrink-0">
-              <img 
-                src="/lovable-uploads/b3fb0450-fff9-4190-b440-e6148864600d.png" 
-                alt="Nord-Trøndelag våpenskjold" 
-                className="w-20 h-24 md:w-24 md:h-28 object-contain"
-              />
-            </div>
-            
-            {/* Title and Description */}
-            <div className="text-center md:text-left">
-              <h1 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight">
-                Morosame Fakta om Nord-Trøndelag
-              </h1>
-              <p className="text-blue-100 text-lg md:text-xl max-w-2xl">
-                Oppdag fascinerende fakta om Noregs vakre nordlege region
-              </p>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
-          {/* Introduction */}
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
-              Utforsk Underverka i Nord-Trøndelag
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-              Frå urgamle bergformasjonar til moderne lakseoppdrett - Nord-Trøndelag er ein region 
-              rik på historie, kultur og naturskjønheit. Trykk på knappen under for å oppdage 
-              fantastiske fakta om denne merkelege delen av Noreg.
-            </p>
-          </div>
-
-          {/* Interactive Section */}
-          <div className="text-center mb-8">
-            <Button 
-              onClick={getRandomFact}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 text-lg rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
-              size="lg"
-            >
-              Få Tilfeldig Faktum
-            </Button>
-          </div>
-
-          {/* Fact Display */}
-          {currentFact && (
-            <Card className={`max-w-3xl mx-auto shadow-xl border-0 transition-all duration-500 ${isAnimating ? 'opacity-50 scale-95' : 'opacity-100 scale-100'}`}>
-              <CardContent className="p-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span className="text-2xl">🇳🇴</span>
-                  </div>
-                  <p className="text-gray-800 text-lg md:text-xl leading-relaxed font-medium">
-                    {currentFact}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Call to Action */}
-          {!currentFact && (
-            <div className="text-center mt-12">
-              <div className="bg-blue-50 rounded-2xl p-8 max-w-2xl mx-auto">
-                <h3 className="text-xl font-semibold text-blue-800 mb-4">
-                  Klar for å Lære Noko Nytt?
-                </h3>
-                <p className="text-blue-700">
-                  Trykk på knappen over for å byrje å utforske fascinerende fakta om Nord-Trøndelag, 
-                  ein av Noregs mest interessante regionar!
+    <div className="min-h-screen relative">
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: "url('/lovable-uploads/82a0881f-8b4e-4b97-9c90-9e44a821c090.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          filter: 'blur(1px)',
+          opacity: 0.3
+        }}
+      />
+      
+      {/* Content Overlay */}
+      <div className="relative z-10 min-h-screen bg-gradient-to-b from-emerald-50/90 via-blue-50/80 to-green-50/90">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-emerald-700/95 to-blue-700/95 text-white shadow-xl backdrop-blur-sm">
+          <div className="container mx-auto px-4 py-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+              {/* Coat of Arms */}
+              <div className="flex-shrink-0">
+                <img 
+                  src="/lovable-uploads/b3fb0450-fff9-4190-b440-e6148864600d.png" 
+                  alt="Nord-Trøndelag våpenskjold" 
+                  className="w-20 h-24 md:w-24 md:h-28 object-contain filter drop-shadow-lg"
+                />
+              </div>
+              
+              {/* Title and Description */}
+              <div className="text-center md:text-left">
+                <h1 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight drop-shadow-lg">
+                  Morosame Fakta om Nord-Trøndelag
+                </h1>
+                <p className="text-emerald-100 text-lg md:text-xl max-w-2xl drop-shadow-md">
+                  Oppdag fascinerende fakta om Noregs vakre nordlege region
                 </p>
               </div>
             </div>
-          )}
-        </div>
-      </main>
+          </div>
+        </header>
 
-      {/* Footer */}
-      <footer className="bg-blue-800 text-white py-8 mt-16">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-blue-200">
-            Feirar den rike arven og naturskjønheita til Nord-Trøndelag, Noreg
-          </p>
-        </div>
-      </footer>
+        {/* Main Content */}
+        <main className="container mx-auto px-4 py-12">
+          <div className="max-w-4xl mx-auto">
+            {/* Introduction */}
+            <div className="text-center mb-12">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-emerald-200/50">
+                <h2 className="text-2xl md:text-3xl font-semibold text-emerald-800 mb-4">
+                  Utforsk Underverka i Nord-Trøndelag
+                </h2>
+                <p className="text-emerald-700 text-lg max-w-2xl mx-auto leading-relaxed">
+                  Frå urgamle bergformasjonar til moderne lakseoppdrett - Nord-Trøndelag er ein region 
+                  rik på historie, kultur og naturskjønheit. Trykk på knappen under for å oppdage 
+                  fantastiske fakta om denne merkelege delen av Noreg.
+                </p>
+              </div>
+            </div>
+
+            {/* Interactive Section */}
+            <div className="text-center mb-8">
+              <Button 
+                onClick={getRandomFact}
+                className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold py-3 px-8 text-lg rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
+                size="lg"
+              >
+                Få Tilfeldig Faktum
+              </Button>
+            </div>
+
+            {/* Fact Display */}
+            {currentFact && (
+              <Card className={`max-w-3xl mx-auto shadow-2xl border-0 transition-all duration-500 ${isAnimating ? 'opacity-50 scale-95' : 'opacity-100 scale-100'} bg-white/90 backdrop-blur-md border-emerald-200/50`}>
+                <CardContent className="p-8">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-emerald-100/80 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                      <span className="text-2xl">🇳🇴</span>
+                    </div>
+                    <p className="text-emerald-800 text-lg md:text-xl leading-relaxed font-medium">
+                      {currentFact}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Call to Action */}
+            {!currentFact && (
+              <div className="text-center mt-12">
+                <div className="bg-emerald-50/90 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto shadow-xl border border-emerald-200/50">
+                  <h3 className="text-xl font-semibold text-emerald-800 mb-4">
+                    Klar for å Lære Noko Nytt?
+                  </h3>
+                  <p className="text-emerald-700">
+                    Trykk på knappen over for å byrje å utforske fascinerende fakta om Nord-Trøndelag, 
+                    ein av Noregs mest interessante regionar!
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </main>
+
+        {/* Footer */}
+        <footer className="bg-gradient-to-r from-emerald-800/95 to-blue-800/95 text-white py-8 mt-16 backdrop-blur-sm shadow-2xl">
+          <div className="container mx-auto px-4 text-center">
+            <p className="text-emerald-100 drop-shadow-md">
+              Feirar den rike arven og naturskjønheita til Nord-Trøndelag, Noreg
+            </p>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 };
