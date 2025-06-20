@@ -1,11 +1,16 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { Share2 } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Share2, Settings, Sparkles, Loader2 } from "lucide-react";
+import { hasApiKey } from "@/utils/apiKeyManager";
+import { generateFact, GeneratedFact } from "@/utils/llmService";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
   const facts = [
     "Nord-Trøndelag har Leka-øya, som inneheld nokre av verdas eldste bergartar frå 3,8 milliardar år tilbake.",
     "Regionen er kjend for den tradisjonelle 'lefsa', som har blitt laga her i over 500 år.",
@@ -27,9 +32,12 @@ const Index = () => {
   const [currentFact, setCurrentFact] = useState("");
   const [currentFactIndex, setCurrentFactIndex] = useState(-1);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isGeneratingAI, setIsGeneratingAI] = useState(false);
+  const [generatedFact, setGeneratedFact] = useState<GeneratedFact | null>(null);
 
   const getRandomFact = () => {
     setIsAnimating(true);
+    setGeneratedFact(null);
     setTimeout(() => {
       const randomIndex = Math.floor(Math.random() * facts.length);
       setCurrentFact(facts[randomIndex]);
@@ -38,14 +46,57 @@ const Index = () => {
     }, 200);
   };
 
-  const shareFact = () => {
-    if (currentFact && currentFactIndex !== -1) {
-      const shareUrl = `${window.location.origin}/fact/${currentFactIndex}`;
-      navigator.clipboard.writeText(shareUrl);
-      // You could add a toast notification here
-      alert('Lenke kopiert til utklippstavla!');
+  const generateAIFact = async () => {
+    if (!hasApiKey()) {
+      navigate('/settings');
+      return;
+    }
+
+    setIsGeneratingAI(true);
+    setIsAnimating(true);
+    setCurrentFact("");
+    setCurrentFactIndex(-1);
+
+    try {
+      const newFact = await generateFact();
+      setGeneratedFact(newFact);
+      setCurrentFact(newFact.text);
+      toast({
+        title: "Nytt AI-faktum generert!",
+        description: "Eit spennande nytt faktum om Nord-Trøndelag",
+      });
+    } catch (error) {
+      toast({
+        title: "Feil ved generering",
+        description: error instanceof Error ? error.message : "Noko gjekk gale",
+        variant: "destructive",
+      });
+    } finally {
+      setIsGeneratingAI(false);
+      setIsAnimating(false);
     }
   };
+
+  const shareFact = () => {
+    if (generatedFact) {
+      // For generated facts, we'll copy the text directly since they don't have permanent URLs yet
+      navigator.clipboard.writeText(`${generatedFact.text}\n\n- Generert av AI om Nord-Trøndelag`);
+      toast({
+        title: "Kopiert!",
+        description: "AI-generert faktum kopiert til utklippstavla",
+      });
+    } else if (currentFact && currentFactIndex !== -1) {
+      const shareUrl = `${window.location.origin}/fact/${currentFactIndex}`;
+      navigator.clipboard.writeText(shareUrl);
+      toast({
+        title: "Kopiert!",
+        description: "Lenke kopiert til utklippstavla",
+      });
+    }
+  };
+
+  const displayedFact = currentFact || "";
+  const isAIFact = !!generatedFact;
 
   return (
     <div className="min-h-screen relative">
@@ -67,6 +118,15 @@ const Index = () => {
         {/* Header */}
         <header className="bg-gradient-to-r from-emerald-700/90 to-blue-700/90 text-white shadow-xl backdrop-blur-sm">
           <div className="container mx-auto px-4 py-8">
+            <div className="flex justify-end mb-4">
+              <Link to="/settings">
+                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20">
+                  <Settings className="w-4 h-4 mr-2" />
+                  Innstillingar
+                </Button>
+              </Link>
+            </div>
+            {/* Header content */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-6">
               {/* Coat of Arms */}
               <div className="flex-shrink-0">
@@ -113,27 +173,53 @@ const Index = () => {
             </div>
 
             {/* Interactive Section */}
-            <div className="text-center mb-8">
-              <Button 
-                onClick={getRandomFact}
-                className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold py-3 px-8 text-lg rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
-                size="lg"
-              >
-                Få Tilfeldig Faktum
-              </Button>
+            <div className="text-center mb-8 space-y-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  onClick={getRandomFact}
+                  className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold py-3 px-8 text-lg rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
+                  size="lg"
+                >
+                  Få Tilfeldig Faktum
+                </Button>
+                
+                <Button 
+                  onClick={generateAIFact}
+                  disabled={isGeneratingAI}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-8 text-lg rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
+                  size="lg"
+                >
+                  {isGeneratingAI ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Genererer...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-5 h-5 mr-2" />
+                      Generer AI-Faktum
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
 
             {/* Fact Display */}
-            {currentFact && (
+            {displayedFact && (
               <Card className={`max-w-3xl mx-auto shadow-2xl border-0 transition-all duration-500 ${isAnimating ? 'opacity-50 scale-95' : 'opacity-100 scale-100'} bg-white/85 backdrop-blur-md border-emerald-200/50`}>
                 <CardContent className="p-8">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-emerald-100/80 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                      <span className="text-2xl">🇳🇴</span>
+                      <span className="text-2xl">{isAIFact ? "🤖" : "🇳🇴"}</span>
                     </div>
                     <p className="text-emerald-800 text-lg md:text-xl leading-relaxed font-medium mb-4">
-                      {currentFact}
+                      {displayedFact}
                     </p>
+                    {isAIFact && (
+                      <p className="text-sm text-purple-600 mb-4 font-medium">
+                        ✨ Generert av AI
+                      </p>
+                    )}
                     <Button 
                       onClick={shareFact}
                       variant="outline" 
