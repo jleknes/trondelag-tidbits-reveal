@@ -18,7 +18,7 @@ export const generateFact = async (): Promise<GeneratedFact> => {
 * Norges eneste Miss Universe noensinne kommer fra Stjørdal og heter Mona Grudt. Hun gikk til topps i konkurransen og fikk tittelen i 1990.
 * Munkeby er navnet på osten som fire franske munker produserer i Munkeby Mariakloster i Munkebygrenda ved Levanger. Osten er laget på upasteurisert kumelk og er ifølge kokken Eivind Hellstrøm er den en av landets aller beste oster.
 
-Returner bare faktumet, ingen ekstra tekst eller forklaring. Det skal være et komplett faktum som starter direkte uten innledning.`;
+Returner bare faktumet, ingen ekstra tekst eller forklaring. Det skal være et komplett faktum som startar direkte uten innledning.`;
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -27,7 +27,7 @@ Returner bare faktumet, ingen ekstra tekst eller forklaring. Det skal være et k
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'gpt-4',
+      model: 'gpt-4.1-2025-04-14',
       messages: [
         {
           role: 'system',
