@@ -154,25 +154,6 @@ const Index = () => {
         {/* Main Content */}
         <main className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto">
-            {/* Introduction */}
-            <div className="text-center mb-12">
-              <div className="bg-white/75 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-emerald-200/50">
-                <h2 className="text-2xl md:text-3xl font-semibold text-emerald-800 mb-4">
-                  Utforsk Underverkene i Nord-Trøndelag
-                </h2>
-                <p className="text-emerald-700 text-lg max-w-2xl mx-auto leading-relaxed mb-6">
-                  Fra urgamle bergformasjoner til moderne lakseoppdrett - Nord-Trøndelag er en region 
-                  rik på historie, kultur og naturskjønnhet. Trykk på knappen under for å oppdage 
-                  fantastiske fakta om denne merkelige delen av Norge.
-                </p>
-                <Link to="/facts">
-                  <Button variant="outline" className="mb-4">
-                    Se alle fakta
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
             {/* Interactive Section */}
             <div className="text-center mb-8 space-y-4">
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -249,15 +230,43 @@ const Index = () => {
                 </div>
               </div>
             )}
+
+            {/* Introduction - moved below call to action */}
+            <div className="text-center mt-12">
+              <div className="bg-white/75 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-emerald-200/50">
+                <h2 className="text-2xl md:text-3xl font-semibold text-emerald-800 mb-4">
+                  Utforsk Underverkene i Nord-Trøndelag
+                </h2>
+                <p className="text-emerald-700 text-lg max-w-2xl mx-auto leading-relaxed mb-6">
+                  Fra urgamle bergformasjoner til moderne lakseoppdrett - Nord-Trøndelag er en region 
+                  rik på historie, kultur og naturskjønnhet.
+                </p>
+                <Link to="/facts">
+                  <Button variant="outline" className="mb-4">
+                    Se alle fakta
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </main>
 
         {/* Footer */}
         <footer className="bg-gradient-to-r from-emerald-800/90 to-blue-800/90 text-white py-8 mt-16 backdrop-blur-sm shadow-2xl">
           <div className="container mx-auto px-4 text-center">
-            <p className="text-emerald-100 drop-shadow-md">
-              Feirer den rike arven og naturskjønnheten til Nord-Trøndelag, Norge
-            </p>
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-emerald-100 drop-shadow-md">
+                Feirer den rike arven og naturskjønnheten til Nord-Trøndelag, Norge
+              </p>
+              <div className="flex items-center gap-3">
+                <span className="text-emerald-100 text-sm">Promptet av</span>
+                <img 
+                  src="/lovable-uploads/fc9c17c4-e1c1-437a-9f5f-5ed45071cd75.png" 
+                  alt="Kantega logo" 
+                  className="h-6 object-contain"
+                />
+              </div>
+            </div>
           </div>
         </footer>
       </div>
