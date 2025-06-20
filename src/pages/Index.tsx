@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
+import { Share2 } from "lucide-react";
 
 const Index = () => {
   const facts = [
@@ -23,6 +25,7 @@ const Index = () => {
   ];
 
   const [currentFact, setCurrentFact] = useState("");
+  const [currentFactIndex, setCurrentFactIndex] = useState(-1);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const getRandomFact = () => {
@@ -30,13 +33,23 @@ const Index = () => {
     setTimeout(() => {
       const randomIndex = Math.floor(Math.random() * facts.length);
       setCurrentFact(facts[randomIndex]);
+      setCurrentFactIndex(randomIndex);
       setIsAnimating(false);
     }, 200);
   };
 
+  const shareFact = () => {
+    if (currentFact && currentFactIndex !== -1) {
+      const shareUrl = `${window.location.origin}/fact/${currentFactIndex}`;
+      navigator.clipboard.writeText(shareUrl);
+      // You could add a toast notification here
+      alert('Lenke kopiert til utklippstavla!');
+    }
+  };
+
   return (
     <div className="min-h-screen relative">
-      {/* Background Image */}
+      {/* Background Image - Increased opacity */}
       <div 
         className="fixed inset-0 z-0"
         style={{
@@ -45,14 +58,14 @@ const Index = () => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           filter: 'blur(1px)',
-          opacity: 0.3
+          opacity: 0.6
         }}
       />
       
       {/* Content Overlay */}
-      <div className="relative z-10 min-h-screen bg-gradient-to-b from-emerald-50/90 via-blue-50/80 to-green-50/90">
+      <div className="relative z-10 min-h-screen bg-gradient-to-b from-emerald-50/80 via-blue-50/70 to-green-50/80">
         {/* Header */}
-        <header className="bg-gradient-to-r from-emerald-700/95 to-blue-700/95 text-white shadow-xl backdrop-blur-sm">
+        <header className="bg-gradient-to-r from-emerald-700/90 to-blue-700/90 text-white shadow-xl backdrop-blur-sm">
           <div className="container mx-auto px-4 py-8">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6">
               {/* Coat of Arms */}
@@ -82,15 +95,20 @@ const Index = () => {
           <div className="max-w-4xl mx-auto">
             {/* Introduction */}
             <div className="text-center mb-12">
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-emerald-200/50">
+              <div className="bg-white/75 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-emerald-200/50">
                 <h2 className="text-2xl md:text-3xl font-semibold text-emerald-800 mb-4">
                   Utforsk Underverka i Nord-Trøndelag
                 </h2>
-                <p className="text-emerald-700 text-lg max-w-2xl mx-auto leading-relaxed">
+                <p className="text-emerald-700 text-lg max-w-2xl mx-auto leading-relaxed mb-6">
                   Frå urgamle bergformasjonar til moderne lakseoppdrett - Nord-Trøndelag er ein region 
                   rik på historie, kultur og naturskjønheit. Trykk på knappen under for å oppdage 
                   fantastiske fakta om denne merkelege delen av Noreg.
                 </p>
+                <Link to="/facts">
+                  <Button variant="outline" className="mb-4">
+                    Sjå alle fakta
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -107,15 +125,24 @@ const Index = () => {
 
             {/* Fact Display */}
             {currentFact && (
-              <Card className={`max-w-3xl mx-auto shadow-2xl border-0 transition-all duration-500 ${isAnimating ? 'opacity-50 scale-95' : 'opacity-100 scale-100'} bg-white/90 backdrop-blur-md border-emerald-200/50`}>
+              <Card className={`max-w-3xl mx-auto shadow-2xl border-0 transition-all duration-500 ${isAnimating ? 'opacity-50 scale-95' : 'opacity-100 scale-100'} bg-white/85 backdrop-blur-md border-emerald-200/50`}>
                 <CardContent className="p-8">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-emerald-100/80 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                       <span className="text-2xl">🇳🇴</span>
                     </div>
-                    <p className="text-emerald-800 text-lg md:text-xl leading-relaxed font-medium">
+                    <p className="text-emerald-800 text-lg md:text-xl leading-relaxed font-medium mb-4">
                       {currentFact}
                     </p>
+                    <Button 
+                      onClick={shareFact}
+                      variant="outline" 
+                      size="sm"
+                      className="flex items-center gap-2 mx-auto"
+                    >
+                      <Share2 size={16} />
+                      Del dette faktumet
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -124,7 +151,7 @@ const Index = () => {
             {/* Call to Action */}
             {!currentFact && (
               <div className="text-center mt-12">
-                <div className="bg-emerald-50/90 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto shadow-xl border border-emerald-200/50">
+                <div className="bg-emerald-50/85 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto shadow-xl border border-emerald-200/50">
                   <h3 className="text-xl font-semibold text-emerald-800 mb-4">
                     Klar for å Lære Noko Nytt?
                   </h3>
@@ -139,7 +166,7 @@ const Index = () => {
         </main>
 
         {/* Footer */}
-        <footer className="bg-gradient-to-r from-emerald-800/95 to-blue-800/95 text-white py-8 mt-16 backdrop-blur-sm shadow-2xl">
+        <footer className="bg-gradient-to-r from-emerald-800/90 to-blue-800/90 text-white py-8 mt-16 backdrop-blur-sm shadow-2xl">
           <div className="container mx-auto px-4 text-center">
             <p className="text-emerald-100 drop-shadow-md">
               Feirar den rike arven og naturskjønheita til Nord-Trøndelag, Noreg
