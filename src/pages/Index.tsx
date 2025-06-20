@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -261,8 +260,8 @@ const Index = () => {
               <div className="flex items-center gap-3">
                 <span className="text-emerald-100 text-sm">Promptet av</span>
                 <img 
-                  src="/lovable-uploads/fc9c17c4-e1c1-437a-9f5f-5ed45071cd75.png" 
-                  alt="Kantega logo" 
+                  src="/lovable-uploads/c07f9dd1-d35c-4a0a-a65c-168e607f9023.png" 
+                  alt="Logo" 
                   className="h-6 object-contain"
                 />
               </div>
